@@ -3,80 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentación de la Clase Crossover</title>
+    <title>Documentación Librería de Algoritmos Genéticos para Machine Learning</title>
     <link rel="stylesheet" href="Css/style.css">
 </head>
 <body>
 
     <header>
-        <h1>Documentación de la Clase Crossover</h1>
-        <p>La clase <strong>Crossover</strong> proporciona métodos de cruce para combinar padres y producir descendencia en algoritmos genéticos.</p>
+        <h1>Documentación de Librería de Algoritmos Genéticos para Machine Learning</h1>
     </header>
 
     <main>
         <!-- Descripción General -->
         <section id="overview">
             <h2>Descripción General</h2>
-            <p>La clase <code>Crossover</code> en la librería de algoritmos genéticos proporciona varios métodos para realizar operaciones de cruce entre los padres seleccionados. Cada método toma un conjunto de padres y el tamaño de la descendencia a generar.</p>
+            <p>En este docuemnto se implementan diversas técnicas y operadores utilizados en algoritmos genéticos, que son un enfoque de optimización inspirados en la evolución natural. Las funciones y métodos aquí presentados permiten crear, mutar y seleccionar individuos en una población, así como aplicar operadores de cruce para generar descendencia, todo con el objetivo de encontrar soluciones óptimas a problemas complejos.</p>
             <p>Los métodos disponibles son:</p>
             <ul>
-                <li><a href="#single-point-crossover">Single Point Crossover</a></li>
-                <li><a href="#two-points-crossover">Two Points Crossover</a></li>
-                <li><a href="#uniform-crossover">Uniform Crossover</a></li>
-                <li><a href="#scattered-crossover">Scattered Crossover</a></li>
+                <li><a href="#Cruce-un-punto">Cruce de un Punto</a></li>
+                <li><a href="#Cruce-dos-puntos">Cruce de dos Puntos</a></li>
+                <li><a href="#Cruce-uniforme">Cruce Uniforme</a></li>
+                <li><a href="#Cruce-de-dispersion">Cruce de Dispersión</a></li>
             </ul>
         </section>
 
         <!-- Método single_point_crossover -->
-        <section id="single-point-crossover">
-            <h2>Single Point Crossover</h2>
-            <p>El método <strong>Single Point Crossover</strong> selecciona un punto aleatorio donde se realiza el cruce entre los pares de padres. Este punto marca el cambio de los genes entre los padres para crear la descendencia.</p>
+        <section id="Cruce-un-punto">
+            <h2>Cruce de un punto</h2>
+            <p>La función <strong>Cruce de un punto</strong> implementa un operador de cruce (crossover) de un punto para combinar dos individuos (o padres) en un algoritmo genético. Este método selecciona aleatoriamente un punto de cruce dentro de los genes de los padres y genera un descendiente combinando los genes del primer padre hasta el punto de cruce, seguido de los genes del segundo padre a partir de dicho punto.</p>
             <h3>Parámetros</h3>
             <ul>
-                <li><code>parents</code>: Los padres a cruzar para producir la descendencia.</li>
-                <li><code>offspring_size</code>: El tamaño de la descendencia a producir.</li>
+                <li><code>parents (list of list)</code>: Una lista de individuos o soluciones candidatas (listas de genes) que representan la población de padres. Cada elemento de la lista es un individuo en forma de lista de genes.</li>
+                <li><code>offspring_size (int)</code>: Número de descendientes que se generarán a partir de los padres. Define cuántos descendientes serán producidos por la función.</li>
             </ul>
             <h3>Retorno</h3>
-            <p>Devuelve un arreglo con la descendencia producida.</p>
+            <li><code>offspring (list of list)</code>: Una lista de descendientes generados mediante el cruce de los padres. Cada descendiente es una combinación de genes de dos padres seleccionados aleatoriamente.</li>
+            <h3>Ejemplo</h3>
+            <li><code>offspring</code>: cruce_un_punto(parents=[[1, 0, 1], [0, 1, 0], [1, 1, 0]], offspring_size=3)</li>
         </section>
 
         <!-- Método two_points_crossover -->
-        <section id="two-points-crossover">
-            <h2>Two Points Crossover</h2>
-            <p>El método <strong>Two Points Crossover</strong> selecciona dos puntos aleatorios donde se realiza el cruce entre los pares de padres. Entre estos puntos, se realiza un intercambio de genes entre los padres para formar la descendencia.</p>
+        <section id="Cruce-dos-puntos">
+            <h2>Cruce de dos puntos</h2>
+            <p>La función <strong>Cruce de dos puntos</strong> implementa un operador de cruce de dos puntos para combinar dos individuos en un algoritmo genético. Este método selecciona aleatoriamente dos puntos de cruce dentro de los genes de los padres y genera un descendiente combinando los genes del primer padre antes del primer punto de cruce, los genes del segundo padre entre los dos puntos de cruce, y de nuevo los genes del primer padre después del segundo punto de cruce.</p>
             <h3>Parámetros</h3>
             <ul>
-                <li><code>parents</code>: Los padres a cruzar para producir la descendencia.</li>
-                <li><code>offspring_size</code>: El tamaño de la descendencia a producir.</li>
+                <li><code>parents (list of list)</code>: Lista de individuos que representan la población de padres, donde cada individuo es una lista de genes.</li>
+                <li><code>offspring_size (int)</code>: Número de descendientes a generar a partir de los padres.</li>
             </ul>
             <h3>Retorno</h3>
-            <p>Devuelve un arreglo con la descendencia producida.</p>
+            <li><code>offspring (list of list)</code>: Lista de descendientes producidos mediante el cruce de dos puntos, cada uno resultante de la combinación de genes de dos padres seleccionados aleatoriamente.</li>
+            <h3>Ejemplo</h3>
+            <li><code>offspring</code>: cruce_dos_puntos(parents=[[1, 0, 1, 0], [0, 1, 1, 0]], offspring_size=2)</li>
         </section>
 
         <!-- Método uniform_crossover -->
-        <section id="uniform-crossover">
-            <h2>Uniform Crossover</h2>
-            <p>El método <strong>Uniform Crossover</strong> selecciona aleatoriamente, para cada gen, uno de los dos padres y copia el gen en la descendencia.</p>
+        <section id="Cruce-uniforme">
+            <h2>Cruce Uniforme</h2>
+            <p>La función <strong>Cruce Uniforme</strong> realiza un operador de cruce uniforme, donde cada gen de un descendiente se selecciona aleatoriamente de uno de los dos padres, proporcionando una distribución equitativa de los genes entre los descendientes. Cada gen tiene una probabilidad del 50% de provenir de uno de los dos padres, lo que permite una variabilidad más equilibrada.</p>
             <h3>Parámetros</h3>
             <ul>
-                <li><code>parents</code>: Los padres a cruzar para producir la descendencia.</li>
-                <li><code>offspring_size</code>: El tamaño de la descendencia a producir.</li>
+                <li><code>parents (list of list)</code>: Población de padres, donde cada individuo es una lista de genes.</li>
+                <li><code>offspring_size</code>: Número de descendientes a producir.</li>
             </ul>
             <h3>Retorno</h3>
-            <p>Devuelve un arreglo con la descendencia producida.</p>
+            <li><code>offspring_size</code>: Lista de descendientes generados mediante el cruce uniforme.</li>
+            <h3>Ejemplo</h3>
+            <li><code>offspring</code>: cruce_uniforme(parents=[[1, 0, 1], [0, 1, 0]], offspring_size=3)</li>
         </section>
 
         <!-- Método scattered_crossover -->
-        <section id="scattered-crossover">
-            <h2>Scattered Crossover</h2>
-            <p>El método <strong>Scattered Crossover</strong> selecciona aleatoriamente cada gen de uno de los dos padres, de manera que la descendencia es una mezcla aleatoria de los genes de ambos padres.</p>
+        <section id="Cruce-de-dispersion">
+            <h2>Cruce de dispersión</h2>
+            <p>La función <strong>Cruce de dispersión</strong> implementa un operador de cruce de dispersión, que selecciona cada gen de forma aleatoria entre dos padres para producir un descendiente. Este método selecciona genes al azar de cada padre, permitiendo una combinación de alta variabilidad y dispersión genética en los descendientes.</p>
             <h3>Parámetros</h3>
             <ul>
-                <li><code>parents</code>: Los padres a cruzar para producir la descendencia.</li>
-                <li><code>offspring_size</code>: El tamaño de la descendencia a producir.</li>
+                <li><code>parents (list of list)</code>: Una lista que representa la población de padres.</li>
+                <li><code>offspring_size (int)</code>: Número de descendientes a generar mediante la dispersión de genes.</li>
             </ul>
             <h3>Retorno</h3>
-            <p>Devuelve un arreglo con la descendencia producida.</p>
+            <li><code>offspring (list of list)</code>: Lista de descendientes producidos mediante el cruce de dispersión, con genes seleccionados al azar de cada padre.</li>
+            <h3>Ejemplo</h3>
+            <li><code>offspring</code>: cruce_de_dispersion(parents=[[1, 0, 1], [0, 1, 0]], offspring_size=2)</li>
         </section>
     </main>
 
