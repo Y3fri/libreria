@@ -8,75 +8,120 @@
 </head>
 <body>
 
-    <header>
-        <h1>Documentación de la Clase Crossover</h1>
-        <p>La clase <strong>Crossover</strong> proporciona métodos de cruce para combinar padres y producir descendencia en algoritmos genéticos.</p>
-    </header>
 
     <main>
         <!-- Descripción General -->
         <section id="overview">
-            <h2>Descripción General</h2>
-            <p>La clase <code>Crossover</code> en la librería de algoritmos genéticos proporciona varios métodos para realizar operaciones de cruce entre los padres seleccionados. Cada método toma un conjunto de padres y el tamaño de la descendencia a generar.</p>
-            <p>Los métodos disponibles son:</p>
+        
             <ul>
-                <li><a href="#single-point-crossover">Single Point Crossover</a></li>
-                <li><a href="#two-points-crossover">Two Points Crossover</a></li>
-                <li><a href="#uniform-crossover">Uniform Crossover</a></li>
-                <li><a href="#scattered-crossover">Scattered Crossover</a></li>
+                <li><a href="#Seleccion_estado_estable">Seleccion estado estable</a></li>
+                <li><a href="#seleccion_por_rango">seleccion por rango</a></li>
+                <li><a href="#seleccion_por_torneo">seleccion por torneo</a></li>
+                <li><a href="#seleccion_aleatoria">seleccion aleatoria</a></li>
+                <li><a href="#seleccion_por_ruleta">seleccion por ruleta</a></li>
+                <li><a href="#seleccion_universal_estocastica">seleccion_universal_estocastica</a></li>
+                <li><a href="#seleccion_nsga2">seleccion_nsga2</a></li>
+                <li><a href="#seleccion_por_torneo_nsga2">seleccion_por_torneo_nsga2</a></li>
             </ul>
         </section>
 
         <!-- Método single_point_crossover -->
-        <section id="single-point-crossover">
-            <h2>Single Point Crossover</h2>
-            <p>El método <strong>Single Point Crossover</strong> selecciona un punto aleatorio donde se realiza el cruce entre los pares de padres. Este punto marca el cambio de los genes entre los padres para crear la descendencia.</p>
+        <section id="Seleccion_estado_estable">
+            <h2>Seleccion estado estable</h2>
+            <p>La funcion <strong>seleccion_estado_estable(poblacion, num_nuevos=2)</strong> aplica la técnica de selección de estado estable, que busca mantener un número fijo de individuos en la población. Se seleccionan individuos basándose en su desempeño, de manera que se preserven aquellos con mejor rendimiento y se introduzcan nuevos individuos para promover la diversidad genética</p>
             <h3>Parámetros</h3>
             <ul>
-                <li><code>parents</code>: Los padres a cruzar para producir la descendencia.</li>
-                <li><code>offspring_size</code>: El tamaño de la descendencia a producir.</li>
+                <li><code>poblacion</code>: (list): Lista de individuos (números) en la población actual.</li>
+                <li><code>num_nuevos</code>: (int, opcional): Número de nuevos individuos a introducir en la población. Valor por defecto: 2</li>
             </ul>
-            <h3>Retorno</h3>
-            <p>Devuelve un arreglo con la descendencia producida.</p>
+            <h3>Retorno</h3> 
+            <p>Devuelve una lista con los individuos seleccionados para la próxima generación, manteniendo una cantidad fija de la población inicial.</p>
         </section>
 
         <!-- Método two_points_crossover -->
-        <section id="two-points-crossover">
-            <h2>Two Points Crossover</h2>
-            <p>El método <strong>Two Points Crossover</strong> selecciona dos puntos aleatorios donde se realiza el cruce entre los pares de padres. Entre estos puntos, se realiza un intercambio de genes entre los padres para formar la descendencia.</p>
+        <section id="seleccion_por_rango">
+            <h2>Seleccion por rango</h2>
+            <p>La función <strong>seleccion_por_rango(poblacion)</strong> implementa la selección por rango, donde se clasifica a los individuos de la población en función de su rendimiento y se seleccionan en función de su posición en ese rango. Esto permite favorecer a los mejores individuos de manera más sistemática. </p>
             <h3>Parámetros</h3>
             <ul>
-                <li><code>parents</code>: Los padres a cruzar para producir la descendencia.</li>
-                <li><code>offspring_size</code>: El tamaño de la descendencia a producir.</li>
+                <li><code>poblacion</code>: (list): Lista de individuos (números) en la población actual.</li>
             </ul>
-            <h3>Retorno</h3>
-            <p>Devuelve un arreglo con la descendencia producida.</p>
+            <h3>Retorno</h3> 
+            <p>Devuelve una lista de individuos seleccionados según su clasificación por rango.</p>
         </section>
 
         <!-- Método uniform_crossover -->
-        <section id="uniform-crossover">
-            <h2>Uniform Crossover</h2>
-            <p>El método <strong>Uniform Crossover</strong> selecciona aleatoriamente, para cada gen, uno de los dos padres y copia el gen en la descendencia.</p>
+        <section id="seleccion_por_torneo">
+            <h2>Seleccion por torneo</h2>
+            <p>La función <strong>seleccion_por_torneo(poblacion, tamano_torneo=3)</strong> realiza la selección por torneo, un método en el cual se seleccionan un número específico de individuos al azar y se elige el mejor entre ellos. Este método es eficiente y se utiliza comúnmente en algoritmos genéticos para garantizar la selección de individuos competitivos.</p>
             <h3>Parámetros</h3>
             <ul>
-                <li><code>parents</code>: Los padres a cruzar para producir la descendencia.</li>
-                <li><code>offspring_size</code>: El tamaño de la descendencia a producir.</li>
+                <li><code>poblacion</code>: (list): Lista de individuos (números) en la población actual.</li>
+                <li><code>tamano_torneo</code>: (int, opcional): Número de individuos que competirán en cada torneo. Valor por defecto: 3.</li>
             </ul>
-            <h3>Retorno</h3>
-            <p>Devuelve un arreglo con la descendencia producida.</p>
+            <h3>Retorno</h3> 
+            <p>Devuelve una lista de individuos seleccionados mediante el método de selección por torneo.</p>
         </section>
 
         <!-- Método scattered_crossover -->
-        <section id="scattered-crossover">
-            <h2>Scattered Crossover</h2>
-            <p>El método <strong>Scattered Crossover</strong> selecciona aleatoriamente cada gen de uno de los dos padres, de manera que la descendencia es una mezcla aleatoria de los genes de ambos padres.</p>
+        <section id="seleccion_aleatoria">
+            <h2>Seleccion aleatoria</h2>
+            <p>La función <strong>seleccion_aleatoria(poblacion)</strong> Selecciona individuos de la población de manera completamente aleatoria. Esta técnica permite una amplia variedad de elecciones, lo que puede ser útil para introducir diversidad genética o en fases iniciales de un algoritmo evolutivo.</p>
             <h3>Parámetros</h3>
             <ul>
-                <li><code>parents</code>: Los padres a cruzar para producir la descendencia.</li>
-                <li><code>offspring_size</code>: El tamaño de la descendencia a producir.</li>
+                <li><code>poblacion</code>: (list): Lista de individuos (números) en la población actual.</li>
+            </ul>
+            <h3>Retorno</h3> 
+            <p>Devuelve una lista de individuos seleccionados de manera aleatoria de la población.</p>
+        </section>
+
+        <!-- Método scattered_crossover -->
+        <section id="seleccion_por_ruleta">
+            <h2>Seleccion por ruleta</h2>
+            <p>La función <strong>seleccion_por_ruleta(poblacion)</strong> aplica la selección por ruleta, donde la probabilidad de seleccionar a un individuo es proporcional a su rendimiento (fitness). Los individuos con un mejor desempeño tienen más probabilidades de ser elegidos, pero todos tienen al menos una oportunidad de ser seleccionados.</p>
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>poblacion</code>: (list): Lista de individuos (números) en la población actual.</li>
+            </ul>
+            <h3>Retorno</h3> 
+            <p>Devuelve una lista de individuos seleccionados mediante el método de selección por ruleta, favoreciendo a los de mejor rendimiento.</p>
+        </section>
+
+        <section id="seleccion_universal_estocastica">
+            <h2>Seleccion universal estocastica</h2>
+            <p>La función <strong>seleccion_universal_estocastica(poblacion)</strong> implementa la selección universal estocástica, que busca mantener una distribución equitativa de la selección de individuos. Esto se realiza utilizando un espaciado uniforme en la selección, garantizando que la diversidad se conserve a lo largo de las generaciones.</p>
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>poblacion</code>: (list): Lista de individuos (números) en la población actual.</li>
             </ul>
             <h3>Retorno</h3>
-            <p>Devuelve un arreglo con la descendencia producida.</p>
+             <p>Devuelve una lista de individuos seleccionados usando el método de selección universal estocástica, manteniendo una distribución uniforme en la selección.</p>
+        </section>
+
+        <section id="seleccion_nsga2">
+            <h2>Seleccion nsga2</h2>
+            <p>La función <strong>seleccion_nsga2(poblacion, front_values, crowding_distances)</strong> realiza la selección según el algoritmo NSGA-II, que se utiliza en problemas de optimización multiobjetivo. Prioriza a los individuos basándose en su nivel de pertenencia a los frentes de Pareto y la distancia de apiñamiento, lo que garantiza que se seleccionen individuos diversificados y bien distribuidos en el espacio de solución.</p>
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>poblacion</code>: (list): Lista de individuos (números) en la población actual.</li>
+                <li><code>front_values</code>: (list): Lista de valores de frente de Pareto asociados a los individuos en la población.</li>
+                <li><code>crowding_distances</code>: (list): Lista de distancias de apiñamiento asociadas a los individuos en la población.</li>
+            </ul>
+            <h3>Retorno</h3> 
+            <p>Devuelve una lista de individuos seleccionados según el método NSGA-II, basándose en su pertenencia a los frentes de Pareto y su distancia de apiñamiento.</p>
+        </section>
+
+        <section id="seleccion_por_torneo_nsga2">
+            <h2>Seleccion_por_torneo_nsga2</h2>
+            <p>La función <strong>seleccion_por_torneo_nsga2(poblacion, front_values, crowding_distances, tamano_torneo=2)</strong> Esta función combina la selección por torneo con el enfoque del NSGA-II. En este método, un grupo de individuos es seleccionado al azar y se evalúa su rendimiento en función de su frente de Pareto y su distancia de apiñamiento, eligiendo al mejor individuo del torneo para avanzar en la próxima generación.</p>
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>poblacion</code>: (list): Lista de individuos (números) en la población actual.</li>
+                <li><code>front_values</code>: (list): Lista de valores de frente de Pareto asociados a los individuos en la población.</li>
+                <li><code>crowding_distances</code>: (list): Lista de distancias de apiñamiento asociadas a los individuos en la población.</li>
+                <li><code>tamano_torneo</code>: (list): (int, opcional): Número de individuos que competirán en cada torneo. Valor por defecto: 2</li>
+                <h3>Retorno</h3> 
+                <p>Devuelve una lista de individuos seleccionados mediante el método de selección por torneo NSGA-II, utilizando tanto los frentes de Pareto como la distancia de apiñamiento.</p>
         </section>
     </main>
 
