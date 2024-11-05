@@ -33,6 +33,7 @@
                 <li><a href="#seleccion_universal_estocastica">Seleccion_universal_estocastica</a></li>
                 <li><a href="#seleccion_nsga2">Seleccion_nsga2</a></li>
                 <li><a href="#seleccion_por_torneo_nsga2">Seleccion_por_torneo_nsga2</a></li>
+                <li><a href="#Graficar_seleccion">Grafica selección</a></li>
                 <li><a href="#Cruce-un-punto">Cruce de un Punto</a></li>
                 <li><a href="#Cruce-dos-puntos">Cruce de dos Puntos</a></li>
                 <li><a href="#Cruce-uniforme">Cruce Uniforme</a></li>
@@ -156,7 +157,7 @@
         </section>
 
         <section id="seleccion_por_torneo_nsga2">
-            <h2>Seleccion_por_torneo_nsga2</h2>
+            <h2>Seleccion por torneo nsga2</h2>
             <p>La función <strong>seleccion_por_torneo_nsga2(poblacion, front_values, crowding_distances,
                     tamano_torneo=2)</strong> Esta función combina la selección por torneo con el enfoque del NSGA-II.
                 En este método, un grupo de individuos es seleccionado al azar y se evalúa su rendimiento en función de
@@ -174,6 +175,28 @@
                 <h3>Retorno</h3>
                 <p>Devuelve una lista de individuos seleccionados mediante el método de selección por torneo NSGA-II,
                     utilizando tanto los frentes de Pareto como la distancia de apiñamiento.</p>
+        </section>
+
+        <section id="Graficar_seleccion">
+            <h2>Graficar Seleccion</h2>
+            <p>La funcion <strong>graficar_seleccion(poblacion_inicial,seleccionados,"titulo")</strong> genera una
+                gráfica secuencial que representa la evaluación de una población inicial y los individuos seleccionados
+                tras aplicar un método de selección genética. En la gráfica, los puntos están conectados con líneas
+                continuas, y se destacan los puntos de inicio y fin tanto de la población como de los seleccionados.</p>
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>poblacion</code>: Lista de individuos en la población inicial. Cada individuo es un valor
+                    numérico que se evalúa en la función objetivo.</li>
+                <li><code>Seleccionados</code>: Lista de individuos seleccionados tras aplicar un método de selección
+                    genética. Cada individuo es un valor numérico correspondiente a la entrada de la función objetivo.
+                </li>
+                <li><code>titulo</code>: Cadena de texto que se utiliza como título para la gráfica generada,
+                    describiendo el método de selección.
+            </ul>
+            <h3>Retorno</h3>
+            <p>La función no retorna valores; en cambio, muestra una gráfica que representa la población inicial y los
+                individuos seleccionados en un solo recuadro. Los puntos de inicio y fin de cada conjunto están marcados
+                en colores distintos para una visualización más clara.</p>
         </section>
 
         <!-- Método single_point_crossover -->
