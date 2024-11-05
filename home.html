@@ -38,11 +38,13 @@
                 <li><a href="#Cruce-dos-puntos">Cruce de dos Puntos</a></li>
                 <li><a href="#Cruce-uniforme">Cruce Uniforme</a></li>
                 <li><a href="#Cruce-de-dispersion">Cruce de Dispersión</a></li>
+                <li><a href="#graficar-cruce ">Graficar Cruce</a></li>
                 <li><a href="#random-mutation">Mutación aleatoria</a></li>
                 <li><a href="#swap-mutation">Mutación intercambio</a></li>
                 <li><a href="#inversion-mutation">Mutación inversa</a></li>
                 <li><a href="#scramble-mutation">Mutación de mezcla</a></li>
                 <li><a href="#adaptive-mutation">Mutación adaptativa</a></li>
+                <li><a href="#seleccionar_elitismo">Elitismo</a></li>
             </ul>
         </section>
 
@@ -282,7 +284,35 @@
             <li><code>offspring</code>: cruce_de_dispersion(parents=[[1, 0, 1], [0, 1, 0]], offspring_size=2)</li>
         </section>
 
+        <section id="graficar-cruce">
+            <h2>Graficar Cruce</h2>
+            <p>La función <strong>graficar_cruce()</strong> genera una visualización de los descendientes producidos a partir 
+               de una operación de cruce en un algoritmo genético. Permite observar la estructura genética de cada descendiente, 
+               lo cual facilita el análisis de la variación introducida en la población tras aplicar el cruce entre individuos 
+               padres. Cada descendiente se representa como una línea con valores de genes en el eje vertical y su índice en el 
+               eje horizontal.</p>
+        
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>funcion_cruce</code>: Función que define el tipo de cruce a aplicar. Esta función debe tomar 
+                    <code>parents</code> y <code>offspring_size</code> como parámetros y devolver una lista de descendientes 
+                    generados mediante el cruce.</li>
+                <li><code>parents</code>: List o numpy.array que contiene los individuos padres que se utilizarán en el 
+                    proceso de cruce. Cada elemento representa un conjunto de genes.</li>
+                <li><code>offspring_size</code>: Int que indica la cantidad de descendientes que se generarán a partir del 
+                    cruce de los padres. Define el tamaño de la descendencia.</li>
+                <li><code>titulo</code> (opcional): String que especifica el título de la gráfica. Por defecto es 
+                    <code>"Gráfica de Cruce"</code>. Permite personalizar el título para describir la operación de cruce 
+                    realizada.</li>
+            </ul>
+        
+            <h3>Retorno</h3>
+            <p>No retorna ningún valor. La función muestra una gráfica en la que cada descendiente es representado como una 
+               línea en el gráfico, con los valores de los genes en el eje vertical y su índice en el eje horizontal. 
+               Esto permite analizar cómo los genes se combinan en los descendientes generados y proporciona una visión de la 
+               diversidad genética tras el proceso de cruce.</p>
         </section>
+        
 
         <section id="random-mutation">
             <h2>Mutación aleatoria</h2>
@@ -408,7 +438,32 @@
                 ninguna mutación, el individuo se devuelve sin cambios.</p>
         </section>
 
-
+        <section id="elitismo">
+            <h2>Elitismo</h2>
+            <p>La función <strong>seleccionar_elitismo()</strong> aplica una técnica de elitismo en un algoritmo genético, 
+               preservando los individuos de mayor aptitud (fitness) de la generación actual y asegurando que pasen a la 
+               siguiente generación sin cambios. Esta estrategia ayuda a mantener las mejores soluciones encontradas hasta 
+               el momento, evitando su posible pérdida debido a operaciones de cruce o mutación. El elitismo contribuye a 
+               la convergencia del algoritmo hacia soluciones de mayor calidad al retener y aprovechar las características 
+               de los mejores individuos.</p>
+        
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>parents</code>: List que contiene a los individuos de la generación actual. Cada elemento representa 
+                    un individuo en la población.</li>
+                <li><code>fitness</code>: List con los valores de aptitud (fitness) correspondientes a cada individuo en 
+                    <code>parents</code>. Este valor indica qué tan buena es cada solución.</li>
+                <li><code>num_elite</code>: Entero que especifica el número de individuos de élite a preservar. Debe ser un valor 
+                    menor o igual al tamaño de la población.</li>
+            </ul>
+        
+            <h3>Retorno</h3>
+            <p>Devuelve una lista <code>elite</code> con los mejores individuos de la generación actual, según sus valores de 
+               aptitud. Estos individuos son seleccionados y preservados para ser incluidos en la siguiente generación sin 
+               modificaciones, asegurando que las características de las mejores soluciones sean retenidas y aprovechadas 
+               en el proceso evolutivo.</p>
+        </section>
+        
     </main>
 
 </body>
