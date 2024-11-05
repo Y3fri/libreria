@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación de la Clase Crossover</title>
+    <link rel="stylesheet" href="Css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Documentación de la Clase Crossover</h1>
+        <p>La clase <strong>Crossover</strong> proporciona métodos de cruce para combinar padres y producir descendencia en algoritmos genéticos.</p>
+    </header>
+
+    <main>
+        <!-- Descripción General -->
+        <section id="overview">
+            <h2>Descripción General</h2>
+            <p>La clase <code>Crossover</code> en la librería de algoritmos genéticos proporciona varios métodos para realizar operaciones de cruce entre los padres seleccionados. Cada método toma un conjunto de padres y el tamaño de la descendencia a generar.</p>
+            <p>Los métodos disponibles son:</p>
+            <ul>
+                <li><a href="#single-point-crossover">Single Point Crossover</a></li>
+                <li><a href="#two-points-crossover">Two Points Crossover</a></li>
+                <li><a href="#uniform-crossover">Uniform Crossover</a></li>
+                <li><a href="#scattered-crossover">Scattered Crossover</a></li>
+            </ul>
+        </section>
+
+        <!-- Método single_point_crossover -->
+        <section id="single-point-crossover">
+            <h2>Single Point Crossover</h2>
+            <p>El método <strong>Single Point Crossover</strong> selecciona un punto aleatorio donde se realiza el cruce entre los pares de padres. Este punto marca el cambio de los genes entre los padres para crear la descendencia.</p>
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>parents</code>: Los padres a cruzar para producir la descendencia.</li>
+                <li><code>offspring_size</code>: El tamaño de la descendencia a producir.</li>
+            </ul>
+            <h3>Retorno</h3>
+            <p>Devuelve un arreglo con la descendencia producida.</p>
+        </section>
+
+        <!-- Método two_points_crossover -->
+        <section id="two-points-crossover">
+            <h2>Two Points Crossover</h2>
+            <p>El método <strong>Two Points Crossover</strong> selecciona dos puntos aleatorios donde se realiza el cruce entre los pares de padres. Entre estos puntos, se realiza un intercambio de genes entre los padres para formar la descendencia.</p>
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>parents</code>: Los padres a cruzar para producir la descendencia.</li>
+                <li><code>offspring_size</code>: El tamaño de la descendencia a producir.</li>
+            </ul>
+            <h3>Retorno</h3>
+            <p>Devuelve un arreglo con la descendencia producida.</p>
+        </section>
+
+        <!-- Método uniform_crossover -->
+        <section id="uniform-crossover">
+            <h2>Uniform Crossover</h2>
+            <p>El método <strong>Uniform Crossover</strong> selecciona aleatoriamente, para cada gen, uno de los dos padres y copia el gen en la descendencia.</p>
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>parents</code>: Los padres a cruzar para producir la descendencia.</li>
+                <li><code>offspring_size</code>: El tamaño de la descendencia a producir.</li>
+            </ul>
+            <h3>Retorno</h3>
+            <p>Devuelve un arreglo con la descendencia producida.</p>
+        </section>
+
+        <!-- Método scattered_crossover -->
+        <section id="scattered-crossover">
+            <h2>Scattered Crossover</h2>
+            <p>El método <strong>Scattered Crossover</strong> selecciona aleatoriamente cada gen de uno de los dos padres, de manera que la descendencia es una mezcla aleatoria de los genes de ambos padres.</p>
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>parents</code>: Los padres a cruzar para producir la descendencia.</li>
+                <li><code>offspring_size</code>: El tamaño de la descendencia a producir.</li>
+            </ul>
+            <h3>Retorno</h3>
+            <p>Devuelve un arreglo con la descendencia producida.</p>
+        </section>
+    </main>
+
+</body>
+</html>
