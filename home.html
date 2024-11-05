@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentación de la Clase Crossover</title>
+    <title>Documentación Librería de Algoritmos Genéticos para Machine Learning</title>
     <link rel="stylesheet" href="Css/style.css">
 </head>
+
 <body>
 
+    <header>
+        <h1>Documentación de Librería de Algoritmos Genéticos para Machine Learning</h1>
+    </header>
 
     <main>
         <!-- Descripción General -->
         <section id="overview">
-        
+            <h2>Descripción General</h2>
+            <p>En este docuemnto se implementan diversas técnicas y operadores utilizados en algoritmos genéticos, que
+                son un enfoque de optimización inspirados en la evolución natural. Las funciones y métodos aquí
+                presentados permiten crear, mutar y seleccionar individuos en una población, así como aplicar operadores
+                de cruce para generar descendencia, todo con el objetivo de encontrar soluciones óptimas a problemas
+                complejos.</p>
+            <p>Los métodos disponibles son:</p>
             <ul>
                 <li><a href="#Seleccion_estado_estable">Seleccion estado estable</a></li>
                 <li><a href="#seleccion_por_rango">seleccion por rango</a></li>
@@ -22,10 +33,18 @@
                 <li><a href="#seleccion_universal_estocastica">seleccion_universal_estocastica</a></li>
                 <li><a href="#seleccion_nsga2">seleccion_nsga2</a></li>
                 <li><a href="#seleccion_por_torneo_nsga2">seleccion_por_torneo_nsga2</a></li>
+                <li><a href="#Cruce-un-punto">Cruce de un Punto</a></li>
+                <li><a href="#Cruce-dos-puntos">Cruce de dos Puntos</a></li>
+                <li><a href="#Cruce-uniforme">Cruce Uniforme</a></li>
+                <li><a href="#Cruce-de-dispersion">Cruce de Dispersión</a></li>
+                <li><a href="#random-mutation">Mutación aleatoria</a></li>
+                <li><a href="#swap-mutation">Mutación intercambio</a></li>
+                <li><a href="#inversion-mutation">Mutación inversa</a></li>
+                <li><a href="#scramble-mutation">Mutación de mezcla</a></li>
+                <li><a href="#adaptive-mutation">Mutación adaptativa</a></li>
             </ul>
         </section>
 
-        <!-- Método single_point_crossover -->
         <section id="Seleccion_estado_estable">
             <h2>Seleccion estado estable</h2>
             <p>La funcion <strong>seleccion_estado_estable(poblacion, num_nuevos=2)</strong> aplica la técnica de selección de estado estable, que busca mantener un número fijo de individuos en la población. Se seleccionan individuos basándose en su desempeño, de manera que se preserven aquellos con mejor rendimiento y se introduzcan nuevos individuos para promover la diversidad genética</p>
@@ -37,8 +56,7 @@
             <h3>Retorno</h3> 
             <p>Devuelve una lista con los individuos seleccionados para la próxima generación, manteniendo una cantidad fija de la población inicial.</p>
         </section>
-
-        <!-- Método two_points_crossover -->
+       
         <section id="seleccion_por_rango">
             <h2>Seleccion por rango</h2>
             <p>La función <strong>seleccion_por_rango(poblacion)</strong> implementa la selección por rango, donde se clasifica a los individuos de la población en función de su rendimiento y se seleccionan en función de su posición en ese rango. Esto permite favorecer a los mejores individuos de manera más sistemática. </p>
@@ -50,7 +68,6 @@
             <p>Devuelve una lista de individuos seleccionados según su clasificación por rango.</p>
         </section>
 
-        <!-- Método uniform_crossover -->
         <section id="seleccion_por_torneo">
             <h2>Seleccion por torneo</h2>
             <p>La función <strong>seleccion_por_torneo(poblacion, tamano_torneo=3)</strong> realiza la selección por torneo, un método en el cual se seleccionan un número específico de individuos al azar y se elige el mejor entre ellos. Este método es eficiente y se utiliza comúnmente en algoritmos genéticos para garantizar la selección de individuos competitivos.</p>
@@ -63,7 +80,6 @@
             <p>Devuelve una lista de individuos seleccionados mediante el método de selección por torneo.</p>
         </section>
 
-        <!-- Método scattered_crossover -->
         <section id="seleccion_aleatoria">
             <h2>Seleccion aleatoria</h2>
             <p>La función <strong>seleccion_aleatoria(poblacion)</strong> Selecciona individuos de la población de manera completamente aleatoria. Esta técnica permite una amplia variedad de elecciones, lo que puede ser útil para introducir diversidad genética o en fases iniciales de un algoritmo evolutivo.</p>
@@ -75,7 +91,6 @@
             <p>Devuelve una lista de individuos seleccionados de manera aleatoria de la población.</p>
         </section>
 
-        <!-- Método scattered_crossover -->
         <section id="seleccion_por_ruleta">
             <h2>Seleccion por ruleta</h2>
             <p>La función <strong>seleccion_por_ruleta(poblacion)</strong> aplica la selección por ruleta, donde la probabilidad de seleccionar a un individuo es proporcional a su rendimiento (fitness). Los individuos con un mejor desempeño tienen más probabilidades de ser elegidos, pero todos tienen al menos una oportunidad de ser seleccionados.</p>
@@ -123,7 +138,219 @@
                 <h3>Retorno</h3> 
                 <p>Devuelve una lista de individuos seleccionados mediante el método de selección por torneo NSGA-II, utilizando tanto los frentes de Pareto como la distancia de apiñamiento.</p>
         </section>
+
+        <!-- Método single_point_crossover -->
+        <section id="Cruce-un-punto">
+            <h2>Cruce de un punto</h2>
+            <p>La función <strong>cruce_un_punto()</strong> implementa un operador de cruce (crossover) de un punto
+                para combinar dos individuos (o padres) en un algoritmo genético. Este método selecciona aleatoriamente
+                un punto de cruce dentro de los genes de los padres y genera un descendiente combinando los genes del
+                primer padre hasta el punto de cruce, seguido de los genes del segundo padre a partir de dicho punto.
+            </p>
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>parents (list of list)</code>: Una lista de individuos o soluciones candidatas (listas de
+                    genes) que representan la población de padres. Cada elemento de la lista es un individuo en forma de
+                    lista de genes.</li>
+                <li><code>offspring_size (int)</code>: Número de descendientes que se generarán a partir de los padres.
+                    Define cuántos descendientes serán producidos por la función.</li>
+            </ul>
+            <h3>Retorno</h3>
+            <li><code>offspring (list of list)</code>: Una lista de descendientes generados mediante el cruce de los
+                padres. Cada descendiente es una combinación de genes de dos padres seleccionados aleatoriamente.</li>
+            <h3>Ejemplo</h3>
+            <li><code>offspring</code>: cruce_un_punto(parents=[[1, 0, 1], [0, 1, 0], [1, 1, 0]], offspring_size=3)</li>
+        </section>
+
+        <!-- Método two_points_crossover -->
+        <section id="Cruce-dos-puntos">
+            <h2>Cruce de dos puntos</h2>
+            <p>La función <strong>cruce_dos_puntos()</strong> implementa un operador de cruce de dos puntos para
+                combinar dos individuos en un algoritmo genético. Este método selecciona aleatoriamente dos puntos de
+                cruce dentro de los genes de los padres y genera un descendiente combinando los genes del primer padre
+                antes del primer punto de cruce, los genes del segundo padre entre los dos puntos de cruce, y de nuevo
+                los genes del primer padre después del segundo punto de cruce.</p>
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>parents (list of list)</code>: Lista de individuos que representan la población de padres,
+                    donde cada individuo es una lista de genes.</li>
+                <li><code>offspring_size (int)</code>: Número de descendientes a generar a partir de los padres.</li>
+            </ul>
+            <h3>Retorno</h3>
+            <li><code>offspring (list of list)</code>: Lista de descendientes producidos mediante el cruce de dos
+                puntos, cada uno resultante de la combinación de genes de dos padres seleccionados aleatoriamente.</li>
+            <h3>Ejemplo</h3>
+            <li><code>offspring</code>: cruce_dos_puntos(parents=[[1, 0, 1, 0], [0, 1, 1, 0]], offspring_size=2)</li>
+        </section>
+
+        <!-- Método uniform_crossover -->
+        <section id="Cruce-uniforme">
+            <h2>Cruce Uniforme</h2>
+            <p>La función <strong>cruce_uniforme()</strong> realiza un operador de cruce uniforme, donde cada gen de un
+                descendiente se selecciona aleatoriamente de uno de los dos padres, proporcionando una distribución
+                equitativa de los genes entre los descendientes. Cada gen tiene una probabilidad del 50% de provenir de
+                uno de los dos padres, lo que permite una variabilidad más equilibrada.</p>
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>parents (list of list)</code>: Población de padres, donde cada individuo es una lista de
+                    genes.</li>
+                <li><code>offspring_size</code>: Número de descendientes a producir.</li>
+            </ul>
+            <h3>Retorno</h3>
+            <li><code>offspring_size</code>: Lista de descendientes generados mediante el cruce uniforme.</li>
+            <h3>Ejemplo</h3>
+            <li><code>offspring</code>: cruce_uniforme(parents=[[1, 0, 1], [0, 1, 0]], offspring_size=3)</li>
+        </section>
+
+        <!-- Método scattered_crossover -->
+        <section id="Cruce-de-dispersion">
+            <h2>Cruce de dispersión</h2>
+            <p>La función <strong>cruce_de_dispersion()</strong> implementa un operador de cruce de dispersión, que
+                selecciona cada gen de forma aleatoria entre dos padres para producir un descendiente. Este método
+                selecciona genes al azar de cada padre, permitiendo una combinación de alta variabilidad y dispersión
+                genética en los descendientes.</p>
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>parents (list of list)</code>: Una lista que representa la población de padres.</li>
+                <li><code>offspring_size (int)</code>: Número de descendientes a generar mediante la dispersión de
+                    genes.</li>
+            </ul>
+            <h3>Retorno</h3>
+            <li><code>offspring (list of list)</code>: Lista de descendientes producidos mediante el cruce de
+                dispersión, con genes seleccionados al azar de cada padre.</li>
+            <h3>Ejemplo</h3>
+            <li><code>offspring</code>: cruce_de_dispersion(parents=[[1, 0, 1], [0, 1, 0]], offspring_size=2)</li>
+        </section>
+
+        </section>
+
+        <section id="random-mutation">
+            <h2>Mutación aleatoria</h2>
+            <p>La función <strong>mutacion_aleatoria()</strong> realiza una operación de mutación aleatoria sobre los
+                genes
+                de un individuo dentro de un algoritmo genético. Esta mutación modifica los valores de los genes con una
+                probabilidad definida, introduciendo variación en la población para explorar nuevas soluciones. La
+                mutación ayuda a evitar que la búsqueda de soluciones se quede atrapada en óptimos locales y permite una
+                mayor diversidad genética.</p>
+
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>individual</code>: List o numpy.array que representa el individuo sobre el cual se aplicará la
+                    mutación. Contiene la estructura de la solución en el algoritmo genético y la información de cada
+                    gen.</li>
+                <li><code>mutation_rate</code>: Float que indica la probabilidad de que ocurra una mutación en cada gen
+                    del individuo. Debe estar entre 0 y 1, donde valores más altos aumentan la probabilidad de mutación.
+                </li>
+                <li><code>mutation_range</code> (opcional): Tuple de dos elementos que define el rango de valores
+                    posibles para cada gen mutado. Por defecto es (0, 1), lo que permite limitar los valores de los
+                    genes a un intervalo específico.</li>
+            </ul>
+
+            <h3>Retorno</h3>
+            <p>Devuelve una copia mutada del individuo original, <code>mutated_individual</code>, donde cada gen ha
+                tenido una probabilidad de mutarse en base a <code>mutation_rate</code>. Los genes mutados toman un
+                nuevo valor aleatorio dentro de <code>mutation_range</code>, mientras que los genes no seleccionados
+                permanecen iguales.</p>
+        </section>
+        <section id="swap-mutation">
+            <h2>Mutación intercambio</h2>
+            <p>La función <strong>mutacion_intercambio()</strong> realiza una operación de mutación basada en el
+                intercambio de
+                dos genes en un individuo dentro de un algoritmo genético. Esta mutación altera la estructura del
+                individuo mediante el intercambio de posiciones de dos elementos, introduciendo variación en la
+                población. La mutación por intercambio es especialmente útil en representaciones de individuos que
+                tienen un orden o secuencia significativa, como en problemas de optimización combinatoria.</p>
+
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>individual</code>: List o numpy.array que representa el individuo sobre el cual se aplicará la
+                    mutación. Contiene los genes que componen la solución y es más efectivo en listas que representan
+                    secuencias o permutaciones.</li>
+                <li><code>mutation_rate</code>: Float que indica la probabilidad de que se realice una mutación por
+                    intercambio en el individuo. Debe estar entre 0 y 1, donde valores más altos incrementan la
+                    probabilidad de intercambio de genes.</li>
+            </ul>
+
+            <h3>Retorno</h3>
+            <p>Devuelve una copia mutada del individuo original, <code>mutated_individual</code>, donde se han
+                intercambiado dos genes si la mutación fue activada según <code>mutation_rate</code>. Si no se realiza
+                ninguna mutación, el individuo se devuelve sin cambios.</p>
+        </section>
+        <section id="inversion-mutation">
+            <h2>Inversión Mutation</h2>
+            <p>La función <strong>inversion_mutation()</strong> realiza una operación de mutación que invierte una
+                subsecuencia de genes en un individuo dentro de un algoritmo genético. Esta mutación altera la
+                estructura del individuo al invertir el orden de los genes en un rango específico, introduciendo
+                variación en la población. La mutación por inversión es útil en problemas donde el orden de los genes es
+                relevante, como en optimización combinatoria.</p>
+
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>individual</code>: List o numpy.array que representa el individuo sobre el cual se aplicará la
+                    mutación. Contiene los genes que componen la solución y es más efectiva en listas que representan
+                    secuencias o permutaciones.</li>
+                <li><code>mutation_rate</code>: Float que indica la probabilidad de que se realice una mutación por
+                    inversión en el individuo. Debe estar entre 0 y 1, donde valores más altos incrementan la
+                    probabilidad de invertir una subsecuencia de genes.</li>
+            </ul>
+
+            <h3>Retorno</h3>
+            <p>Devuelve una copia mutada del individuo original, <code>mutated_individual</code>, donde se ha invertido
+                una subsecuencia de genes si la mutación fue activada según <code>mutation_rate</code>. Si no se realiza
+                ninguna mutación, el individuo se devuelve sin cambios.</p>
+        </section>
+        <section id="scramble-mutation">
+            <h2>Mutación de mezcla</h2>
+            <p>La función <strong>mutacion_mezcla()</strong> realiza una operación de mutación que desordena
+                aleatoriamente una subsecuencia de genes en un individuo dentro de un algoritmo genético. Esta mutación
+                introduce variación en la población al alterar el orden de ciertos genes, lo que puede ayudar a explorar
+                nuevas soluciones en problemas donde el orden es relevante, como en optimización combinatoria.</p>
+
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>individual</code>: List o numpy.array que representa el individuo sobre el cual se aplicará la
+                    mutación. Contiene los genes que componen la solución y es más efectiva en listas que representan
+                    secuencias o permutaciones.</li>
+                <li><code>mutation_rate</code>: Float que indica la probabilidad de que se realice una mutación por
+                    desorden en el individuo. Debe estar entre 0 y 1, donde valores más altos incrementan la
+                    probabilidad de desordenar una subsecuencia de genes.</li>
+            </ul>
+
+            <h3>Retorno</h3>
+            <p>Devuelve una copia mutada del individuo original, <code>mutated_individual</code>, donde se ha
+                desordenado una subsecuencia de genes si la mutación fue activada según <code>mutation_rate</code>. Si
+                no se realiza ninguna mutación, el individuo se devuelve sin cambios.</p>
+        </section>
+
+        <section id="adaptive-mutation">
+            <h2>Mutación adaptativa</h2>
+            <p>La función <strong>mutacion_adaptativa()</strong> realiza una operación de mutación que se ajusta
+                dinámicamente según la generación actual en un algoritmo genético. Este método tiene como objetivo
+                modificar la tasa de mutación a medida que avanza el algoritmo, permitiendo una mayor exploración de
+                soluciones en las primeras generaciones y una convergencia más enfocada en generaciones posteriores. La
+                mutación adaptativa es útil para mantener la diversidad genética en la población a lo largo del tiempo.
+            </p>
+
+            <h3>Parámetros</h3>
+            <ul>
+                <li><code>individual</code>: List o numpy.array que representa el individuo sobre el cual se aplicará la
+                    mutación. Contiene los genes que componen la solución en el algoritmo genético.</li>
+                <li><code>mutation_rate</code>: Float que representa la tasa de mutación base, indicando la probabilidad
+                    inicial de que ocurra una mutación. Este valor debe estar entre 0 y 1.</li>
+                <li><code>generation</code>: Int que representa el número de la generación actual en el algoritmo
+                    genético. Este valor se usa para ajustar la tasa de mutación, disminuyéndola a medida que avanzan
+                    las generaciones.</li>
+            </ul>
+
+            <h3>Retorno</h3>
+            <p>Devuelve una copia mutada del individuo original, <code>mutated_individual</code>, donde se ha aplicado
+                la mutación si la tasa ajustada de mutación fue superada por un valor aleatorio. Si no se realiza
+                ninguna mutación, el individuo se devuelve sin cambios.</p>
+        </section>
+        
+
     </main>
 
 </body>
+
 </html>
